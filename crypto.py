@@ -1,5 +1,7 @@
+import tkinter as tk
+
 Messageacrypter= input("Veuillez ecrire une phrase: ")
-cle=24 # Décalage par rapport à Y (code ASCII : 24 + 1 = 25e lettre de l'alphabet)
+cle=int(input("Veuiller entrer la clé: "))
 
 acrypter=Messageacrypter.upper()
 lg=len(acrypter)
