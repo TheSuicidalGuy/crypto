@@ -1,4 +1,4 @@
-Messageacrypter="le script pour décoder ne devrait pas être long a faire,  je Le donnerai sur ce même forum"
+Messageacrypter= input("Veuillez ecrire une phrase: ")
 cle=24 # Décalage par rapport à Y (code ASCII : 24 + 1 = 25e lettre de l'alphabet)
 
 acrypter=Messageacrypter.upper()
