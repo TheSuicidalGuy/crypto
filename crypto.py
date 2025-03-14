@@ -94,6 +94,7 @@ decrypted_text = scytale_dechiffrer(encrypted_text, num_rails)
 print(f"Texte déchiffré : {decrypted_text}")
 
 
+
 import string
 import random
 
