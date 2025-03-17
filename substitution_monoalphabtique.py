@@ -4,6 +4,14 @@ root = tk.Tk()
 root.title("substitution monoalphabétique")
 root.geometry("300x300")
 
+tk.Label(root, text="Veuillez ecrire une phrase:").grid(row=0, column=0, pady=10)# grid= fonction 
+message_entry = tk.Entry(root)
+message_entry.grid(row=0, column=1, pady=10)
+
+tk.Label(root, text="Veuiller entrer la clé: ").grid(row=1, column=0, pady=10)
+cle_entry = tk.Entry(root)
+cle_entry.grid(row=1, column=1, pady=10)
+
 button1 = tk.Button(root, text="Veuillez ecrire une phrase:", command=lambda: print("") ) 
 button1.grid(row=1, column=1, pady=10)
 

@@ -11,6 +11,7 @@ resultat_label = tk.Label(root, text="")
 resultat_label.grid(row=2, column=1, pady=10)
 
 
+#######################
 Messageacrypter= input("Veuillez ecrire une phrase : ")
 cle=int(input("Veuiller entrer la clé: "))
 
@@ -128,4 +129,6 @@ print(f"Texte chiffré : {encrypted_text}")
 
 decrypted_text = substitution_dechiffrer(encrypted_text, clef)
 print(f"Texte déchiffré : {decrypted_text}")
+
+
 
