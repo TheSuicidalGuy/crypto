@@ -37,8 +37,8 @@ def vigenere_dechiffrer(encrypted_text, cle):
     return "".join(decrypted_text)
 
 # Exemple d'utilisation
-text = input("Veuillez écrire votre phrase : ")
-cle = input("Veuillez entrer votre clé : ")
+text = "BONJOUR"
+cle = "KEY"
 encrypted_text = vigenere_chiffrer(text, cle)
 print(f"Texte chiffré : {encrypted_text}")
 
