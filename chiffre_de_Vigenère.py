@@ -44,4 +44,5 @@ print(f"Texte chiffré : {encrypted_text}")
 
 decrypted_text = vigenere_dechiffrer(encrypted_text, cle)
 print(f"Texte déchiffré : {decrypted_text}")
+
 #https://www.thepingouin.com/2024/10/15/chiffre-de-vigenere-en-python-guide-complet-pour-le-chiffrement-polyalphabetique/
