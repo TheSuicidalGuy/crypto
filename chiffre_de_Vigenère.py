@@ -1,3 +1,15 @@
+import tkinter as tk
+
+root = tk.Tk()
+root.title("chiffre de Vigenère")
+root.geometry("300x300")
+
+button1 = tk.Button(root, text="Veuillez ecrire une phrase:", command=lambda: print("") ) 
+button1.grid(row=1, column=1, pady=10)
+
+resultat_label = tk.Label(root, text="")
+resultat_label.grid(row=2, column=1, pady=10)
+
 def generer_clef(text, cle):
     cle = list(cle)
     if len(text) == len(cle):

@@ -1,3 +1,15 @@
+import tkinter as tk
+
+root = tk.Tk()
+root.title("substitution monoalphabétique")
+root.geometry("300x300")
+
+button1 = tk.Button(root, text="Veuillez ecrire une phrase:", command=lambda: print("") ) 
+button1.grid(row=1, column=1, pady=10)
+
+resultat_label = tk.Label(root, text="")
+resultat_label.grid(row=2, column=1, pady=10)
+
 import string
 import random
 
@@ -28,4 +40,3 @@ print(f"Texte chiffré : {encrypted_text}")
 
 decrypted_text = substitution_dechiffrer(encrypted_text, clef)
 print(f"Texte déchiffré : {decrypted_text}")
-
