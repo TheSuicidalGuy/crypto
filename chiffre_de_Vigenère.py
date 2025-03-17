@@ -4,10 +4,9 @@ root = tk.Tk()
 root.title("chiffre de Vigenère")
 root.geometry("300x300")
 
-button1 = tk.Button(root, text="Veuillez ecrire une phrase:", command=lambda: print("") ) 
-button1.grid(row=1, column=1, pady=10)
 
-resultat_label = tk.Label(root, text="")
+
+resultat_label = tk.Label(root, text="Veuillez ecrire votre phrase : ")
 resultat_label.grid(row=2, column=1, pady=10)
 
 def generer_clef(text, cle):
@@ -38,7 +37,7 @@ def vigenere_dechiffrer(encrypted_text, cle):
     return "".join(decrypted_text)
 
 # Exemple d'utilisation
-text = "hello"
+text = "BONJOUR"
 cle = "KEY"
 encrypted_text = vigenere_chiffrer(text, cle)
 print(f"Texte chiffré : {encrypted_text}")
