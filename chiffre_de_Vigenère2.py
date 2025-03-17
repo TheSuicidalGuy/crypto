@@ -18,7 +18,7 @@ def vigenere_chiffrer(text, cle):
         encrypted_text.append(chr(x))
     return "".join(encrypted_text)
 
-    resultat_label.config(text=MessageCrypte)
+    resultat_label.config(text=encrypted_text)
 
 def vigenere_dechiffrer(encrypted_text, cle):
     decrypted_text = []
@@ -29,7 +29,7 @@ def vigenere_dechiffrer(encrypted_text, cle):
         decrypted_text.append(chr(x))
     return "".join(decrypted_text)
 
-    resultat_label.config(text=MessageCrypte)
+    resultat_label2.config(text=decrypted_text)
 
 root = tk.Tk()
 root.title("Chiffre de Vigenère")
@@ -47,14 +47,14 @@ resultat_label.grid(row=3, column=1, pady=10)
 
 
 tk.Label(root, text="Veuillez ecrire une phrase:").grid(row=0, column=0, pady=10)
-message_entry = tk.Entry(root)
-message_entry.grid(row=0, column=1, pady=10)
+message_entry2 = tk.Entry(root)
+message_entry2.grid(row=4, column=1, pady=10)
 
-button1 = tk.Button(root, text="Dechiffrer", command=vigenere_dechiffrer)
-button1.grid(row=2, column=1, pady=10)
+button2 = tk.Button(root, text="Dechiffrer", command=vigenere_dechiffrer)
+button2.grid(row=5, column=1, pady=10)
 
-resultat_label = tk.Label(root, text="")
-resultat_label.grid(row=3, column=1, pady=10)
+resultat_label2 = tk.Label(root, text="")
+resultat_label2.grid(row=6, column=1, pady=10)
 
 root.mainloop()
 #à reparer, le code n'est pas aboutit
