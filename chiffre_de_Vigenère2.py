@@ -12,6 +12,12 @@ def generer_clef(text, cle):
 def vigenere_chiffrer(text, cle):
     encrypted_text = []
     cle = generer_clef(text, cle)
+    encrypted_text = []
+    cle = generer_clef(encrypted_text, cle)
+    encrypted_text = message_entry.get()
+    acrypter = encrypted_text.upper()
+    lg = len(acrypter)
+    encrypted_text = ""
     for i in range(len(text)):
         x = (ord(text[i]) + ord(cle[i])) % 26
         x += ord('A')
@@ -23,6 +29,10 @@ def vigenere_chiffrer(text, cle):
 def vigenere_dechiffrer(encrypted_text, cle):
     decrypted_text = []
     cle = generer_clef(encrypted_text, cle)
+    decrypted_text = message_entry.get()
+    acrypter = decrypted_text.upper()
+    lg = len(acrypter)
+    decrypted_text = ""
     for i in range(len(encrypted_text)):
         x = (ord(encrypted_text[i]) - ord(cle[i]) + 26) % 26
         x += ord('A')
