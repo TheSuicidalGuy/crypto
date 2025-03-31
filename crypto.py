@@ -7,7 +7,11 @@ root.geometry("300x300")
 button1 = tk.Button(root, text="Veuillez ecrire une phrase:", command=lambda: print("") ) 
 button1.grid(row=1, column=1, pady=10)
 
+resultat_label = tk.Label(root, text="")
+resultat_label.grid(row=2, column=1, pady=10)
 
+
+#######################
 Messageacrypter= input("Veuillez ecrire une phrase : ")
 cle=int(input("Veuiller entrer la clé: "))
 
@@ -115,7 +119,8 @@ def substitution_dechiffrer(encrypted_text, clef):
     return decrypted_text
 
 # Exemple d'utilisation
-text = "HELLO"
+text = "Hello"
+resultat_label.config(text="Vous avez écrit : " + text)  # Affiche le texte 
 clef = generer_clef_substitution()
 print(f"Clef de substitution : {clef}")
 
@@ -124,3 +129,6 @@ print(f"Texte chiffré : {encrypted_text}")
 
 decrypted_text = substitution_dechiffrer(encrypted_text, clef)
 print(f"Texte déchiffré : {decrypted_text}")
+
+
+
