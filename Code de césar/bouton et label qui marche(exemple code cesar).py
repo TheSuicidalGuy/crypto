@@ -20,7 +20,7 @@ root = tk.Tk()
 root.title("Chiffrement césar")
 root.geometry("400x300")
 
-tk.Label(root, text="Veuillez ecrire une phrase :").grid(row=0, column=0, pady=10)
+tk.Label(root, text="Veuillez ecrire une phrase:").grid(row=0, column=0, pady=10)
 message_entry = tk.Entry(root)
 message_entry.grid(row=0, column=1, pady=10)
 
