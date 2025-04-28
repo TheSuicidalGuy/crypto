@@ -33,3 +33,17 @@ print(f"Texte chiffré : {encrypted_text}")
 
 decrypted_text = vigenere_dechiffrer(encrypted_text, cle)
 print(f"Texte déchiffré : {decrypted_text}")
+
+
+def num(c):
+    return ord(c) - ord('A')
+
+def lettre(n):
+    return chr(n + ord('A'))
+
+def chiffrement(message) :
+    chiffre = ""
+    for c in message : # c comme ...
+        x = (num(c) + 3) % 26
+        chiffre = chiffre + lettre (x)
+    return chiffre
