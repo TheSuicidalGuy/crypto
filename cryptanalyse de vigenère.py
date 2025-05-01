@@ -3,6 +3,7 @@
 message =  input("Veuillez ecrire un message : ")  # Message à chiffrer
 cle = input("Veuillez entrer la clé : ")  # Clé de chiffrement
 message = message.upper()  # Convertir le message en majuscules
+cle = cle.upper()  # Convertir la clé en majuscules
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" # Alphabet utilisé pour le chiffrement
 message_code = "" # Initialiser le message chiffré
 
