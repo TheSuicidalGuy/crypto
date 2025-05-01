@@ -1,18 +1,22 @@
-# test 1 #
+# test codage de vegenère # :
 
-message =  input("Veuillez ecrire un message : ")  # Message à chiffrer
-cle = input("Veuillez entrer la clé : ")  # Clé de chiffrement
-message = message.upper()  # Convertir le message en majuscules
-cle = cle.upper()  # Convertir la clé en majuscules
-alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" # Alphabet utilisé pour le chiffrement
-message_code = "" # Initialiser le message chiffré
+message = input("Veuillez écrire un message : ")
+cle = input("Veuillez entrer la clé : ")
+message = message.upper()
+cle = cle.upper()
+alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+message_code = ""
+j = 0
 
-for i in range(len(message)): # Parcourir chaque lettre du message
-    lettre_message = message[i] # Lettre du message
-    lettre_cle = cle[i % len(cle)]
-    indice = (alphabet.index(lettre_message) + alphabet.index(lettre_cle)) % len(alphabet)
-    message_code += alphabet[indice]
+for i in range(len(message)):
+    lettre_message = message[i]
+    if lettre_message in alphabet:
+        lettre_cle = cle[j % len(cle)]
+        indice = (alphabet.index(lettre_message) + alphabet.index(lettre_cle)) % len(alphabet)
+        message_code += alphabet[indice]
+        j += 1  # On avance dans la clé seulement si on chiffre une lettre
+    else:
+        message_code += lettre_message  # Si la lettre est dans l’alphabet, on la chiffre. Sinon on la garde telle quelle (espace, ponctuation, etc)
+
 print("Message chiffré :", message_code)
-
-
 
