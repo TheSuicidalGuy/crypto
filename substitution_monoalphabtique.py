@@ -12,11 +12,13 @@ tk.Label(root, text="Veuiller entrer la clé: ").grid(row=1, column=0, pady=10)
 cle_entry = tk.Entry(root)
 cle_entry.grid(row=1, column=1, pady=10)
 
-button1 = tk.Button(root, text="Veuillez ecrire une phrase:", command=lambda: print("") ) 
-button1.grid(row=1, column=1, pady=10)
+
+tk.Button.grid(row=1, column=1, pady=10)
 
 resultat_label = tk.Label(root, text="")
 resultat_label.grid(row=2, column=1, pady=10)
+
+root.mainloop()
 
 import string
 import random
