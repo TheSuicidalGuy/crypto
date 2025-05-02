@@ -1,5 +1,5 @@
 def dechiffre_scytale(texte, cle):
-    texte = texte.replace(" ", "").upper()  # Supprime les espaces et met en majuscules
+    texte = texte.upper()  #met en majuscules
     longueur = len(texte)
     colonnes = (longueur + cle - 1) // cle  # Nombre de colonnes (arrondi supérieur)
     lignes = cle  # Nombre de lignes dans la grille
@@ -16,8 +16,10 @@ def dechiffre_scytale(texte, cle):
 
 
 # Exemple
-texte_chiffre = "HOLEWDLOLR"  # HELLOWORLD transposé avec clé 3
-cle = 11
+#texte_chiffre = "HLOEORLWD"  # HELLOWORLD transposé avec clé 3
+texte_chiffre = "HLOEORLWD"
+cle = 3
 
 texte_dechiffre = dechiffre_scytale(texte_chiffre, cle)
 print("Texte déchiffré :", texte_dechiffre)
+
