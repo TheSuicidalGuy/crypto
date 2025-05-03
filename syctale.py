@@ -35,7 +35,7 @@ tk.Label(root, text="Veuillez ecrire une phrase :").grid(row=0, column=0, pady=1
 message_entry = tk.Entry(root)
 message_entry.grid(row=0, column=1, pady=10)
 
-tk.Label(root, text="Veuiller entrer la clé:").grid(row=1, column=0, pady=10)
+tk.Label(root, text="Veuiller entrer la clé :").grid(row=1, column=0, pady=10)
 cle_entry = tk.Entry(root)
 cle_entry.grid(row=1, column=1, pady=10)
 
