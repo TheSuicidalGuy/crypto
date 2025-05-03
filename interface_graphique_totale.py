@@ -58,6 +58,70 @@ def open_method_window(method_name):
 
         tk.Button(method_window, text="Chiffrer", command=chiffrer_message).pack(pady=10)
         
+    elif method_name == "Chiffre de Vigenère":
+        tk.Label(method_window, text="Chiffre de Vigenère", font=larger_bold_font).pack(pady=10)
+
+        # Ajouter les champs d'entrée pour le message et la clé
+        tk.Label(method_window, text="Veuillez écrire une phrase :").pack(pady=5)
+        message_entry = tk.Entry(method_window, width=30)
+        message_entry.pack(pady=5)
+
+        tk.Label(method_window, text="Veuillez entrer une clé (mot) :").pack(pady=5)
+        cle_entry = tk.Entry(method_window, width=30)
+        cle_entry.pack(pady=5)
+
+        # Ajouter un label pour afficher le résultat
+        resultat_label = tk.Label(method_window, text="", font=larger_bold_font)
+        resultat_label.pack(pady=10)
+
+        # Ajouter le bouton "Chiffrer" qui appelle la fonction chiffrer_vigenere
+        def chiffrer_vigenere():
+            message = message_entry.get().replace(" ", "").upper()
+            cle = cle_entry.get().upper()
+            lg_message = len(message)
+            lg_cle = len(cle)
+            MessageCrypte = ""
+
+            for i in range(lg_message):
+                lettre_message = ord(message[i]) - 65
+                lettre_cle = ord(cle[i % lg_cle]) - 65
+                lettre_cryptee = (lettre_message + lettre_cle) % 26
+                MessageCrypte += chr(lettre_cryptee + 65)
+
+            resultat_label.config(text=MessageCrypte)
+
+        tk.Button(method_window, text="Chiffrer", command=chiffrer_vigenere).pack(pady=10)
+
+    elif method_name == "Scytale":
+        tk.Label(method_window, text="Scytale", font=larger_bold_font).pack(pady=10)
+
+        # Ajouter les champs d'entrée pour le message et le nombre de colonnes
+        tk.Label(method_window, text="Veuillez écrire une phrase :").pack(pady=5)
+        message_entry = tk.Entry(method_window, width=30)
+        message_entry.pack(pady=5)
+
+        tk.Label(method_window, text="Veuillez entrer le nombre de colonnes :").pack(pady=5)
+        colonnes_entry = tk.Entry(method_window, width=10)
+        colonnes_entry.pack(pady=5)
+
+        # Ajouter un label pour afficher le résultat
+        resultat_label = tk.Label(method_window, text="", font=larger_bold_font)
+        resultat_label.pack(pady=10)
+
+        # Ajouter le bouton "Chiffrer" qui appelle la fonction chiffrer_scytale
+        def chiffrer_scytale():
+            message = message_entry.get().replace(" ", "").upper()
+            colonnes = int(colonnes_entry.get())
+            lignes = (len(message) + colonnes - 1) // colonnes  # Calculer le nombre de lignes
+            grille = [""] * colonnes
+
+            for i in range(len(message)):
+                grille[i % colonnes] += message[i]
+
+            resultat_label.config(text="".join(grille))
+
+        tk.Button(method_window, text="Chiffrer", command=chiffrer_scytale).pack(pady=10)
+
     else:
         tk.Label(method_window, text=f"Vous avez sélectionné la méthode : {method_name}", font=large_bold_font).pack(pady=50)
     
