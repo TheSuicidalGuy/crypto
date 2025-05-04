@@ -1,50 +1,54 @@
 import tkinter as tk
-
-root = tk.Tk()
-root.title("substitution monoalphabétique")
-root.geometry("300x300")
-
-tk.Label(root, text="Veuillez ecrire une phrase:").grid(row=0, column=0, pady=10)# grid= fonction 
-message_entry = tk.Entry(root)
-message_entry.grid(row=0, column=1, pady=10)
-
-tk.Label(root, text="Veuiller entrer la clé: ").grid(row=1, column=0, pady=10)
-cle_entry = tk.Entry(root)
-cle_entry.grid(row=1, column=1, pady=10)
-
-button1 = tk.Button(root, text="Veuillez ecrire une phrase:", command=lambda: print("") ) 
-button1.grid(row=1, column=1, pady=10)
-
-resultat_label = tk.Label(root, text="")
-resultat_label.grid(row=2, column=1, pady=10)
-
 import string
 import random
 
+# Fonction pour générer une clé de substitution
 def generer_clef_substitution():
     alphabet = list(string.ascii_uppercase)
     clef = alphabet[:]
     random.shuffle(clef)
     return dict(zip(alphabet, clef))
 
-def substitution_chiffrer(text, clef):
-    text = text.upper()
-    encrypted_text = ''.join(clef.get(char, char) for char in text)
-    return encrypted_text
+# Fonction pour chiffrer un texte avec la substitution
+def substitution_chiffrer():
+    text = message_entry.get()  # Récupérer le texte de l'entrée
+    clef = generer_clef_substitution()  # Générer une clé aléatoire
+    encrypted_text = ''.join(clef.get(char.upper(), char) for char in text)  # Chiffrer le texte
+    resultat_label.config(text=f"Texte chiffré : {encrypted_text}")  # Afficher le résultat
+    print(f"Clef de substitution : {clef}")  # Afficher la clé dans la console
 
-def substitution_dechiffrer(encrypted_text, clef):
-    inverse_clef = {v: k for k, v in clef.items()}
-    decrypted_text = ''.join(inverse_clef.get(char, char) for char in encrypted_text)
-    return decrypted_text
+# Fonction pour déchiffrer un texte avec la substitution
+def substitution_dechiffrer():
+    text = message_entry.get()  # Récupérer le texte de l'entrée
+    clef = eval(cle_entry.get())  # Récupérer la clé entrée par l'utilisateur
+    inverse_clef = {v: k for k, v in clef.items()}  # Inverser la clé
+    decrypted_text = ''.join(inverse_clef.get(char.upper(), char) for char in text)  # Déchiffrer le texte
+    resultat_label.config(text=f"Texte déchiffré : {decrypted_text}")  # Afficher le résultat
 
-# Exemple d'utilisation
-text = "Hello"
-resultat_label.config(text="Vous avez écrit : " + text)  # Affiche le texte 
-clef = generer_clef_substitution()
-print(f"Clef de substitution : {clef}")
+# Création de la fenêtre principale
+root = tk.Tk()
+root.title("Substitution Monoalphabétique")
+root.geometry("400x300")
 
-encrypted_text = substitution_chiffrer(text, clef)
-print(f"Texte chiffré : {encrypted_text}")
+# Widgets pour entrer le texte et la clé
+tk.Label(root, text="Veuillez écrire une phrase :").grid(row=0, column=0, pady=10)
+message_entry = tk.Entry(root, width=30)
+message_entry.grid(row=0, column=1, pady=10)
 
-decrypted_text = substitution_dechiffrer(encrypted_text, clef)
-print(f"Texte déchiffré : {decrypted_text}")
+tk.Label(root, text="Veuillez entrer la clé (facultatif) :").grid(row=1, column=0, pady=10)
+cle_entry = tk.Entry(root, width=30)
+cle_entry.grid(row=1, column=1, pady=10)
+
+# Boutons pour chiffrer et déchiffrer
+chiffrer_button = tk.Button(root, text="Chiffrer", command=substitution_chiffrer)
+chiffrer_button.grid(row=2, column=0, pady=10)
+
+dechiffrer_button = tk.Button(root, text="Déchiffrer", command=substitution_dechiffrer)
+dechiffrer_button.grid(row=2, column=1, pady=10)
+
+# Label pour afficher le résultat
+resultat_label = tk.Label(root, text="", font=("Helvetica", 12))
+resultat_label.grid(row=3, column=0, columnspan=2, pady=10)
+
+# Lancer la boucle principale
+root.mainloop()

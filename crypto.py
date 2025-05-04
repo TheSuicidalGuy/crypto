@@ -60,7 +60,7 @@ def vigenere_dechiffrer(encrypted_text, cle):
         decrypted_text.append(chr(x))
     return "".join(decrypted_text)
 
-# Exemple d'utilisation
+cle=int(input("Veuiller entrer la clé : "))
 text = "BONJOUR"
 cle = "KEY"
 encrypted_text = vigenere_chiffrer(text, cle)
