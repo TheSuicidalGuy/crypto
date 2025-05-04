@@ -522,4 +522,29 @@ button1.grid(row=0, column=0, pady=10)
 button2 = tk.Button(root, text="Déchiffrer", width=20, height=2, command=lambda: open_new_window("dechiffrer"))
 button2.grid(row=0, column=2, pady=10)
 
+def open_about_window():
+    """Ouvre une fenêtre 'Explication des codes'."""
+    about_window = tk.Toplevel(root)
+    about_window.title("À propos")
+    about_window.geometry("400x300")
+    tk.Label(about_window, text="Explication des codes", font=larger_bold_font).pack(pady=20)
+    tk.Label(about_window, text="Le code de césar :", font=large_bold_font, justify="center").pack(pady=20)
+    tk.Label(about_window, text="Le texte chiffré s'obtient en remplaçant chaque lettre du texte clair original par une lettre à distance fixe, toujours du même côté, \n" \
+                                "dans l'ordre de l'alphabet. Pour les dernières lettres (dans le cas d'un décalage à droite), on reprend au début. Par exemple avec un décalage de 3 vers la droite, \n" \
+                                " A est remplacé par D, B devient E, et ainsi jusqu'à W qui devient Z, puis X devient A etc. ", justify="center").pack(pady=20)
+    tk.Label(about_window, text="Le chiffre de Vigenère :", font=large_bold_font, justify="center").pack(pady=20)
+    tk.Label(about_window, text="Le chiffre de Vigenère est un algorithme de chiffrement par substitution polyalphabétique. Il utilise une clé pour déterminer le décalage de chaque lettre du texte clair. \n" \
+                                "Chaque lettre de la clé correspond à un décalage dans l'alphabet, et le texte est chiffré en appliquant ces décalages successivement.", justify="center").pack(pady=20)
+    tk.Label(about_window, text="La scytale :", font=large_bold_font, justify="center").pack(pady=20)
+    tk.Label(about_window, text="La scytale est un ancien dispositif de chiffrement qui consiste à enrouler un message autour d'un cylindre. \n" \
+                                "Le message est ensuite lu en déroulant le cylindre, révélant ainsi le texte chiffré.", justify="center").pack(pady=20)
+    tk.Label(about_window, text="La substitution monoalphabétique :", font=large_bold_font, justify="center").pack(pady=20)
+    tk.Label(about_window, text="La substitution monoalphabétique est un type de chiffrement par substitution dans lequel chaque lettre du texte clair est remplacée par une autre lettre. \n" \
+                                "La clé de chiffrement est une permutation de l'alphabet, et chaque lettre est remplacée par la lettre correspondante dans la clé.", justify="center").pack(pady=20)
+                            
+    tk.Button(about_window, text="Fermer", command=about_window.destroy).pack(pady=20)
+
+button3 = tk.Button(root, text="Explication des codes", width=20, height=2, command=open_about_window)
+button3.grid(row=1, column=1, pady=10)
+
 root.mainloop()

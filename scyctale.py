@@ -3,7 +3,7 @@ import tkinter as tk
 def scytale_chiffrer(text, num_rails):
     encrypted_text = [''] * num_rails
     for i in range(len(text)):
-        encrypted_text[i % num_rails] += text[i]
+        encrypted_text[i % num_rails] += text[i] #Chaque caractère du texte est ajouté à un rail en fonction de son index modulo
     return ''.join(encrypted_text)
 
 def scytale_dechiffrer(encrypted_text, num_rails):
