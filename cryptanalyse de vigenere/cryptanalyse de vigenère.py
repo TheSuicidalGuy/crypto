@@ -133,3 +133,7 @@ else:
     print(cle)
     texte_decode = vigenere(texte_maj,cle,False)
     print(texte_decode)
+
+    # SOURCE : https://www.apprendre-en-ligne.net/crypto/python/vigenere/decrypt-vigenere.py
+    # Ce programme n'a evidemment pas été fait par nous mais par un proffesseur qui a choisit de laisser public ce code.
+    
