@@ -1,9 +1,10 @@
 # decrypte un texte avec le chiffre de Vigenere
 
-def que_des_majuscules(texte,taille_bloc=5):
-    # remplace les caracteres accentues, supprime les espaces et la ponctuation
+
+  # remplace les caracteres accentues, supprime les espaces et la ponctuation
     # renvoie une chaine de lettres majuscules
     # Par défaut, il ajoute un espace tous les 5 caractères (utile pour la lisibilité).
+def que_des_majuscules(texte,taille_bloc=5):
     chaine = ""
     i=0  # tient le compte des lettres du message transforme
     texte = texte.lower() # on passe tout en minuscules pour commencer
