@@ -231,20 +231,43 @@ def open_force_brute_window(method_name):
         resultat_label.pack(pady=10)
 
         # Fonction pour effectuer le déchiffrement de la Scytale
-        def dechiffrer_scytale():
-            message = message_entry.get().replace(" ", "").upper()
-            colonnes = int(colonnes_entry.get())
-            lignes = (len(message) + colonnes - 1) // colonnes
-            grille = [""] * lignes
+        def dechiffrer_force_brute_scytale():
+            try:
+                # Récupérer le message chiffré
+                message = message_entry.get().replace(" ", "").upper()
+                if not message:
+                    resultat_label.config(text="Veuillez entrer un texte valide.")
+                    return
 
-            for i in range(len(message)):
-                grille[i % lignes] += message[i]
+                # Initialiser les résultats
+                resultats = []
 
-            decrypted_message = "".join(grille)
-            resultat_label.config(text=f"Message déchiffré : {decrypted_message}")
+                # Essayer toutes les valeurs possibles pour le nombre de colonnes
+                for colonnes in range(2, len(message)):
+                    lignes = (len(message) + colonnes - 1) // colonnes
+                    grille = [""] * lignes
+
+                    # Reconstituer le texte par colonnes
+                    index = 0
+                    for i in range(colonnes):
+                        for j in range(lignes):
+                            if index < len(message):
+                                grille[j] += message[index]
+                                index += 1
+
+                    # Ajouter le résultat pour cette tentative
+                    texte_dechiffre = "".join(grille)
+                    resultats.append(f"Colonnes : {colonnes}\n{texte_dechiffre}\n")
+
+                # Afficher tous les résultats
+                resultat_label.config(text="\n".join(resultats))
+
+            except Exception as e:
+                resultat_label.config(text=f"Erreur : {str(e)}")
+        
 
         # Bouton pour lancer le déchiffrement
-        tk.Button(force_brute_window, text="Déchiffrer (Scytale)", command=dechiffrer_scytale).pack(pady=10)
+        tk.Button(force_brute_window, text="Déchiffrer (Scytale)", command=dechiffrer_force_brute_scytale).pack(pady=10)
 
     elif method_name == "Chiffre de Vigenère":
         tk.Label(force_brute_window, text="Déchiffrement par force brute pour le Chiffre de Vigenère.", font=("Helvetica", 12)).pack(pady=10)
@@ -391,12 +414,17 @@ def open_analyse_frequence_window(method_name):
                     resultat_label.config(text="Veuillez entrer un texte valide et un nombre de colonnes valide.")
                     return
 
-                # Reconstitution du texte par lignes
+                # Calcul du nombre de lignes
                 lignes = (len(message) + colonnes - 1) // colonnes
-                grille = [""] * colonnes
 
-                for i in range(len(message)):
-                    grille[i % colonnes] += message[i]
+                # Reconstitution du texte par colonnes
+                grille = [""] * colonnes
+                index = 0
+                for i in range(lignes):
+                    for j in range(colonnes):
+                        if index < len(message):
+                            grille[j] += message[index]
+                            index += 1
 
                 # Reconstruction du texte déchiffré
                 texte_dechiffre = "".join(grille)
@@ -407,6 +435,7 @@ def open_analyse_frequence_window(method_name):
 
             except ValueError:
                 resultat_label.config(text="Erreur : Veuillez entrer un nombre valide pour les colonnes.")
+           
 
         # Bouton pour lancer l'analyse de fréquence
         tk.Button(analyse_window, text="Analyser", command=analyse_frequence_scytale).pack(pady=10)
