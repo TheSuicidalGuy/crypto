@@ -1,11 +1,12 @@
 # Pour un texte lonnnnnnng
 
+# fonction calcule la fréquence des lettres dans un texte
 def analyse_frequence(texte):
-    texte = texte.upper()
+    texte = texte.upper() # convertit en majuscule
     frequences = {}
 
     for lettre in texte:
-        if lettre.isalpha():
+        if lettre.isalpha(): # si le caractère est une lettre
             if lettre in frequences:
                 frequences[lettre] += 1
             else:
@@ -24,7 +25,7 @@ def dechiffre(texte, cle):
     resultat = ""
     for c in texte:
         if c.isalpha():
-            decal = (ord(c.upper()) - ord('A') - cle) % 26
+            decal = (ord(c.upper()) - ord('A') - cle) % 26 # la lettre est décalé dans l'alphabet en soustrayant la clé et en prenant le modulo 26 
             resultat += chr(decal + ord('A'))
         else:
             resultat += c

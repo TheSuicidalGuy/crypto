@@ -6,7 +6,7 @@ def analyse_frequence(texte):
     for lettre in texte:
         if lettre.isalpha():
             lettre = lettre.upper()  #majuscule
-            frequences[lettre] = frequences.get(lettre, 0) + 1
+            frequences[lettre] = frequences.get(lettre, 0) + 1 #ajouter au dictionnaire avec son nombre d'occurence
     if not frequences:
         return 'E'  # valeur par défaut
     return max(frequences, key=frequences.get) # lettre la plus fréquente
@@ -33,7 +33,7 @@ longueur_cle = 3
 # Lettres les plus fréquentes en français
 lettres_frequentes_fr = ['E', 'A', 'S', 'T']
 
-# Étape 1 : Diviser le texte selon la longueur de la clé
+# Diviser le texte selon la longueur de la clé
 groupes = ['' for _ in range(longueur_cle)]
 j = 0
 for i, c in enumerate(texte):
@@ -42,7 +42,7 @@ for i, c in enumerate(texte):
         j +=1
 
 for lettre_frequente in lettres_frequentes_fr:
-    # Étape 2 : Trouver une lettre probable pour chaque groupe
+    # Trouver une lettre probable pour chaque groupe
     cle_estimee = ''
     for groupe in groupes:
         lettre_freq = analyse_frequence(groupe)        
@@ -51,7 +51,7 @@ for lettre_frequente in lettres_frequentes_fr:
 
     print(f"Clé estimée (en supposant '{lettre_frequente}') : {cle_estimee}")
 
-    # Étape 3 : Déchiffrer avec cette clé
+    #  Déchiffrer avec cette clé
     texte_dechiffre = dechiffre_vigenere(texte, cle_estimee)
     print("Texte déchiffré :", texte_dechiffre)
 

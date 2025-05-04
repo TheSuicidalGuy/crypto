@@ -7,10 +7,10 @@ def scytale_chiffrer(text, num_rails):
     return ''.join(encrypted_text)
 
 def scytale_dechiffrer(encrypted_text, num_rails):
-    num_cols = len(encrypted_text) // num_rails
-    decrypted_text = [''] * num_cols
+    num_cols = len(encrypted_text) // num_rails #Le nombre de colonnes est calculé comme la longueur du texte divisé par le nombre de rails.
+    decrypted_text = [''] * num_cols #Un tableau pour stocker les colonnes
     for i in range(len(encrypted_text)):
-        decrypted_text[i % num_cols] += encrypted_text[i]
+        decrypted_text[i % num_cols] += encrypted_text[i] #Chaque caractère du texte chiffré est ajouté à une colonne en fonction de son index modulo
     return ''.join(decrypted_text)
 
 def chiffrer_message():
@@ -19,7 +19,7 @@ def chiffrer_message():
     try:
         num_rails = int(cle_entry.get())
         if num_rails <= 0:
-            raise ValueError("La clé doit être un entier positif.")
+            raise ValueError("La clé doit être un entier positif.") #Vérifie si la clé est un entier positif. Si ce n'est pas le cas, affiche un message d'erreur.
     except ValueError:
         resultat_label.config(text="Erreur : clé invalide.")
         return
