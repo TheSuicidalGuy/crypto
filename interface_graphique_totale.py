@@ -23,7 +23,7 @@ def open_new_window(action):
         tk.Label(new_window, text="Choisir une méthode de déchiffrement :", font=large_bold_font).pack(pady=20)
         tk.Button(new_window, text="Force brute", width=25, height=2, command=lambda: open_method_window("Force brute")).pack(pady=7)
         tk.Button(new_window, text="Analyse de fréquence", width=25, height=2, command=lambda: open_method_window("Analyse de fréquence")).pack(pady=7)
-        tk.Button(new_window, text="Cryptanalyse de Vigenère", width=25, height=2, command=lambda: open_method_window("Cryptanalyse de Vigenère")).pack(pady=7)
+        
     
     tk.Button(new_window, text="Fermer", command=new_window.destroy).pack(pady=20)
 
@@ -519,9 +519,7 @@ def open_analyse_frequence_window(method_name):
 
         # Bouton pour lancer l'analyse de fréquence
         tk.Button(analyse_window, text="Analyser", command=analyse_frequence_vigenere).pack(pady=10)
-        
-
-       
+            
 
     # Bouton pour fermer la fenêtre
     tk.Button(analyse_window, text="Fermer", command=analyse_window.destroy).pack(pady=20)
