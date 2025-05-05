@@ -1,8 +1,8 @@
 #texte long
 
 
-def analyse_frequence(texte):
-    frequences = {}
+def analyse_frequence(texte): #calcul la fréquence des lettres dans un texte
+    frequences = {} #créé un dico
     for lettre in texte:
         if lettre.isalpha():
             lettre = lettre.upper()  #majuscule
@@ -11,7 +11,7 @@ def analyse_frequence(texte):
         return 'E'  # valeur par défaut
     return max(frequences, key=frequences.get) # lettre la plus fréquente
 
-def dechiffre_vigenere(texte, cle):
+def dechiffre_vigenere(texte, cle): #déchiffre un texte avec le chiffre e Vigenère avec une clé donnée
     resultat = ""
     cle = cle.upper()
     i = 0
