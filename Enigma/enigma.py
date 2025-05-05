@@ -1,3 +1,5 @@
+# Here, we emulate the different parts of Enigma with
+# individual code that we put together here
 import rotors as rtr
 import tableau_de_connexion as pboard
 import reflecteur as rfl

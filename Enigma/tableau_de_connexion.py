@@ -1,4 +1,4 @@
-# Rotors,   Reflecteur, Pos Bague,   Para Bague, Tab de Co
+# Rotors,   Reflector, Ring Pos,   Ring Settings, plugboard
 # II V III |   B C    |  7 4 19  |   12 2 20     | AF TV KO BL RW 
 import re
 
@@ -11,11 +11,11 @@ class Plugboard:
         return self.wiring
     
 
-    # Méthode pour prendre une chaine de caractères de paires de lettre et pour les decoder
-    # en un plan numerique pour les caractères
+    # Method for taking in the string of letter pairs and decoding
+    # them into the numerical mapping for the characters
     def decodePlugboard(self, connections):
-        # On verifie dans un premier temps si la liste est vide,
-        # si c'est le cas, on return l'"Identité" du tab de co
+        # First we check if we are sent an empty list of plugboard connections,
+        # if we are, we just return the "Identity" Plugboard
         if connections == None or connections == "":
             return self.identityPlugboard()
 
@@ -35,7 +35,7 @@ class Plugboard:
         # First, we check we have no more than 13 Steckered pairs supplied (Enigma never used
         # more than 13 at one time)
         if len(pairings) >= 13:
-            print("Too Many Plugboard Wires!!!")
+            print("Trop de connections sur le tableau!!!")
             return self.identityPlugboard()
 
         # We loop through each pair of characters in our pairings array
