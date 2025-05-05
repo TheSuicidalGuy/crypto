@@ -23,7 +23,7 @@ def open_new_window(action):
         tk.Label(new_window, text="Choisir une méthode de déchiffrement :", font=large_bold_font).pack(pady=20)
         tk.Button(new_window, text="Force brute", width=25, height=2, command=lambda: open_method_window("Force brute")).pack(pady=7)
         tk.Button(new_window, text="Analyse de fréquence", width=25, height=2, command=lambda: open_method_window("Analyse de fréquence")).pack(pady=7)
-        tk.Button(new_window, text="Cryptanalyse de Vigenère", width=25, height=2, command=lambda: open_method_window("Cryptanalyse de Vigenère")).pack(pady=7)
+        
     
     tk.Button(new_window, text="Fermer", command=new_window.destroy).pack(pady=20)
 
@@ -231,20 +231,43 @@ def open_force_brute_window(method_name):
         resultat_label.pack(pady=10)
 
         # Fonction pour effectuer le déchiffrement de la Scytale
-        def dechiffrer_scytale():
-            message = message_entry.get().replace(" ", "").upper()
-            colonnes = int(colonnes_entry.get())
-            lignes = (len(message) + colonnes - 1) // colonnes
-            grille = [""] * lignes
+        def dechiffrer_force_brute_scytale():
+            try:
+                # Récupérer le message chiffré
+                message = message_entry.get().replace(" ", "").upper()
+                if not message:
+                    resultat_label.config(text="Veuillez entrer un texte valide.")
+                    return
 
-            for i in range(len(message)):
-                grille[i % lignes] += message[i]
+                # Initialiser les résultats
+                resultats = []
 
-            decrypted_message = "".join(grille)
-            resultat_label.config(text=f"Message déchiffré : {decrypted_message}")
+                # Essayer toutes les valeurs possibles pour le nombre de colonnes
+                for colonnes in range(2, len(message)):
+                    lignes = (len(message) + colonnes - 1) // colonnes
+                    grille = [""] * lignes
+
+                    # Reconstituer le texte par colonnes
+                    index = 0
+                    for i in range(colonnes):
+                        for j in range(lignes):
+                            if index < len(message):
+                                grille[j] += message[index]
+                                index += 1
+
+                    # Ajouter le résultat pour cette tentative
+                    texte_dechiffre = "".join(grille)
+                    resultats.append(f"Colonnes : {colonnes}\n{texte_dechiffre}\n")
+
+                # Afficher tous les résultats
+                resultat_label.config(text="\n".join(resultats))
+
+            except Exception as e:
+                resultat_label.config(text=f"Erreur : {str(e)}")
+        
 
         # Bouton pour lancer le déchiffrement
-        tk.Button(force_brute_window, text="Déchiffrer (Scytale)", command=dechiffrer_scytale).pack(pady=10)
+        tk.Button(force_brute_window, text="Déchiffrer (Scytale)", command=dechiffrer_force_brute_scytale).pack(pady=10)
 
     elif method_name == "Chiffre de Vigenère":
         tk.Label(force_brute_window, text="Déchiffrement par force brute pour le Chiffre de Vigenère.", font=("Helvetica", 12)).pack(pady=10)
@@ -391,12 +414,17 @@ def open_analyse_frequence_window(method_name):
                     resultat_label.config(text="Veuillez entrer un texte valide et un nombre de colonnes valide.")
                     return
 
-                # Reconstitution du texte par lignes
+                # Calcul du nombre de lignes
                 lignes = (len(message) + colonnes - 1) // colonnes
-                grille = [""] * colonnes
 
-                for i in range(len(message)):
-                    grille[i % colonnes] += message[i]
+                # Reconstitution du texte par colonnes
+                grille = [""] * colonnes
+                index = 0
+                for i in range(lignes):
+                    for j in range(colonnes):
+                        if index < len(message):
+                            grille[j] += message[index]
+                            index += 1
 
                 # Reconstruction du texte déchiffré
                 texte_dechiffre = "".join(grille)
@@ -407,6 +435,7 @@ def open_analyse_frequence_window(method_name):
 
             except ValueError:
                 resultat_label.config(text="Erreur : Veuillez entrer un nombre valide pour les colonnes.")
+           
 
         # Bouton pour lancer l'analyse de fréquence
         tk.Button(analyse_window, text="Analyser", command=analyse_frequence_scytale).pack(pady=10)
@@ -490,9 +519,7 @@ def open_analyse_frequence_window(method_name):
 
         # Bouton pour lancer l'analyse de fréquence
         tk.Button(analyse_window, text="Analyser", command=analyse_frequence_vigenere).pack(pady=10)
-        
-
-       
+            
 
     # Bouton pour fermer la fenêtre
     tk.Button(analyse_window, text="Fermer", command=analyse_window.destroy).pack(pady=20)
@@ -521,5 +548,30 @@ button1.grid(row=0, column=0, pady=10)
 
 button2 = tk.Button(root, text="Déchiffrer", width=20, height=2, command=lambda: open_new_window("dechiffrer"))
 button2.grid(row=0, column=2, pady=10)
+
+def open_about_window():
+    """Ouvre une fenêtre 'Explication des codes'."""
+    about_window = tk.Toplevel(root)
+    about_window.title("À propos")
+    about_window.geometry("400x300")
+    tk.Label(about_window, text="Explication des codes", font=larger_bold_font).pack(pady=20)
+    tk.Label(about_window, text="Le code de césar :", font=large_bold_font, justify="center").pack(pady=20)
+    tk.Label(about_window, text="Le texte chiffré s'obtient en remplaçant chaque lettre du texte clair original par une lettre à distance fixe, toujours du même côté, \n" \
+                                "dans l'ordre de l'alphabet. Pour les dernières lettres (dans le cas d'un décalage à droite), on reprend au début. Par exemple avec un décalage de 3 vers la droite, \n" \
+                                " A est remplacé par D, B devient E, et ainsi jusqu'à W qui devient Z, puis X devient A etc. ", justify="center").pack(pady=20)
+    tk.Label(about_window, text="Le chiffre de Vigenère :", font=large_bold_font, justify="center").pack(pady=20)
+    tk.Label(about_window, text="Le chiffre de Vigenère est un algorithme de chiffrement par substitution polyalphabétique. Il utilise une clé pour déterminer le décalage de chaque lettre du texte clair. \n" \
+                                "Chaque lettre de la clé correspond à un décalage dans l'alphabet, et le texte est chiffré en appliquant ces décalages successivement.", justify="center").pack(pady=20)
+    tk.Label(about_window, text="La scytale :", font=large_bold_font, justify="center").pack(pady=20)
+    tk.Label(about_window, text="La scytale est un ancien dispositif de chiffrement qui consiste à enrouler un message autour d'un cylindre. \n" \
+                                "Le message est ensuite lu en déroulant le cylindre, révélant ainsi le texte chiffré.", justify="center").pack(pady=20)
+    tk.Label(about_window, text="La substitution monoalphabétique :", font=large_bold_font, justify="center").pack(pady=20)
+    tk.Label(about_window, text="La substitution monoalphabétique est un type de chiffrement par substitution dans lequel chaque lettre du texte clair est remplacée par une autre lettre. \n" \
+                                "La clé de chiffrement est une permutation de l'alphabet, et chaque lettre est remplacée par la lettre correspondante dans la clé.", justify="center").pack(pady=20)
+                            
+    tk.Button(about_window, text="Fermer", command=about_window.destroy).pack(pady=20)
+
+button3 = tk.Button(root, text="Explication des codes", width=20, height=2, command=open_about_window)
+button3.grid(row=1, column=1, pady=10)
 
 root.mainloop()

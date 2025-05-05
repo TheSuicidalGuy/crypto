@@ -12,7 +12,7 @@ def dechiffre_vigenere(message_code,cle):
             message_reel += alphabet[indice]  # On chiffre la lettre du message avec la lettre de la cléb 
             j += 1
         else:
-            message_reel+= lettre_message  # Si la lettre est dans l’alphabet, on la chiffre. Sinon on la garde telle quelle (espace, ponctuation, etc)
+            message_reel+= lettre_message_code  # Si la lettre est dans l’alphabet, on la chiffre. Sinon on la garde telle quelle (espace, ponctuation, etc)
     return message_reel
 
 
